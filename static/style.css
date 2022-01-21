@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+body{
+    width: 1200px;
+}
+
+header {
+    background-color: #000000;
+    border-bottom: 2px solid #3b3355;
+ }
+
+ .flex-nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 1.3rem;
+    padding: 2rem 0;
+    flex-flow: column;
+    text-align: center;
+    background-color: white;
+    list-style: none;
+}
+
+.flex-nav>li {
+    padding: 1rem 0;
+}

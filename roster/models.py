@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
-# Create your models here.
+STATUS = ((0, "Draft"), (1, "Published"))
 
 
 class RosterList(models.Model):
@@ -17,6 +17,8 @@ class RosterList(models.Model):
     numberOfComments = models.ManyToManyField(User, related_name='roster_comments')
     numberOfLikes = models.ManyToManyField(User, related_name='roster_likes')
     numberOfDislikes = models.ManyToManyField(User, related_name='roster_dislikes')
+    status = models.IntegerField(choices=STATUS, default=0)
+
 
     class Meta:
         ordering = ['-createdOn']
