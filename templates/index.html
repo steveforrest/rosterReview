@@ -1,5 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p> does this work</p>
+    <div>
+        <table>
+            {% comment %} Table headings {% endcomment %}
+            <tr>
+                <th> Roster Name </th>
+                <th> Faction </th>
+                <th> Points </th>
+                <th> List Author </th>
+                <th> List Created On </th>
+                <th> Number Of Comments </th>
+                <th> Likes </th>
+                <th> Dislikes </th>
+            </tr>
+
+            {% for entry in rosters %}
+                <tr>
+                        <td>
+                            {{ entry.name }}
+                        </td>
+                        <td>
+                            {{ entry.faction }}
+                        </td>
+                        <td>
+                            {{ entry.points }}
+                        </td>
+                        <td>
+                            {{ entry.createdBy }}
+                        </td>
+                        <td>
+                            {{ entry.createdOn }}
+                        </td>
+                        <td>
+                            {{ entry.numberOfComments }}
+                        </td>
+                        <td>
+                            {{ entry.numberOfLikes }}
+                        </td>
+                        <td>
+                            {{ entry.numberOfDislikes }}
+                        </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock content %}

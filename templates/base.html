@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <header>
@@ -29,9 +30,14 @@
             <h1 class="font-color-orange text-upper-case text-center">Army Roster Reviewer</h1>
         </a>
     </header>
+    <!-- Body block -->
+    
+    {% block content %}
+    
+    {% endblock content  %}
 
-      <!-- Footer -->
-      <footer class="flex-footer">
+    <!-- Footer -->
+    <footer class="flex-footer">
         <div>
             <p class="font-color-orange text-center">Contact us</p>
             <br>
@@ -50,9 +56,7 @@
                 </li>
             </ul>
         </div>
-        {% block content %}
 
-        {% endblock content %}
         <div>
             <p class="font-color-orange text-center">Helpful links</p>
             <br>

@@ -4,8 +4,16 @@
     margin: 0;
 }
 
+html{
+    height: 100%;
+}
+
 body{
     width: 1200px;
+    background-color: grey;
+    display: flex;
+    flex-direction:column;
+    min-height: 100%;
 }
 
 header {
@@ -28,3 +36,52 @@ header {
 .flex-nav>li {
     padding: 1rem 0;
 }
+
+table{
+    border: 2px solid black
+    border-collapse: collapse;
+    background-color: white;
+}
+
+td, th{
+    font-size: 0.5rem;
+    border: 1px solid black;
+    
+}
+
+/* footer */
+
+footer {
+    border-top: 2px solid #3b3355;
+    background-color: black;
+    color: white;
+    margin-top: auto;
+}
+
+.flex-footer {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column;
+
+}
+
+.flex-footer>div {
+
+    padding: 2rem 0;
+}
+
+
+
+/* media queries */
+
+@media screen and (min-width: 576px) {
+
+
+@media screen and (min-width: 768px) {
+
+
+@media screen and (min-width: 992px) {
+
+@media screen and (min-width: 1200px) {
+    
+ 

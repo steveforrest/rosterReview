@@ -4,13 +4,13 @@ from cloudinary.models import CloudinaryField
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
-
+POINTS = ((500,'500'), (1000,'1000'), (1500, '1500'), (2000, '2000'))
 
 class RosterList(models.Model):
-    name = models.CharField('Name Of List', max_length=200, unique=True, null=False, blank=False)
+    name = models.CharField(max_length=200, unique=True, null=False, blank=False)
     slug = models.SlugField(max_length=200, unique=True)
-    points = models.IntegerField()
-    faction = models.CharField('Faction', max_length=50, null=False, blank=False)
+    points = models.IntegerField(choices=POINTS)
+    faction = models.CharField(max_length=50, null=False, blank=False)
     roster = models.TextField()
     createdBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
     createdOn = models.DateTimeField(auto_now_add=True)
@@ -34,6 +34,7 @@ class RosterList(models.Model):
     
     def number_of_comments(self):
         return self.numberOfComments.count()
+        
 
 class Comment(models.Model):
 
