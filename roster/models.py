@@ -14,9 +14,9 @@ class RosterList(models.Model):
     roster = models.TextField()
     createdBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
     createdOn = models.DateTimeField(auto_now_add=True)
-    numberOfComments = models.ManyToManyField(User, related_name='roster_comments')
-    numberOfLikes = models.ManyToManyField(User, related_name='roster_likes')
-    numberOfDislikes = models.ManyToManyField(User, related_name='roster_dislikes')
+    numberOfComments = models.ManyToManyField(User, related_name='roster_comments', null=True, blank=True)
+    numberOfLikes = models.ManyToManyField(User, related_name='roster_likes', null=True, blank=True)
+    numberOfDislikes = models.ManyToManyField(User, related_name='roster_dislikes', null=True, blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
 
