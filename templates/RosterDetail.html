@@ -2,10 +2,11 @@
 
 
 <div>
-    <p>{{  post.name }}</p>
+    <p> <strong> Roster Name :</strong> {{  post.name }}</p>
     <br>
-    <p>{{  post.points }}</p>
-    <p>{{  post.faction }}</p>
+    <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.createdOn}} </p>
+    <p> <strong> Points: </strong>{{  post.points }} </p>
+    <p> <strong> Faction: </strong>{{  post.faction }}</p>
     <p> {{ post.roster }}
 </div>
 

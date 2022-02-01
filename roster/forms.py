@@ -7,5 +7,4 @@ from .models import RosterList
 class RosterForm(ModelForm):
     class Meta:
         model = RosterList
-        fields = "__all__"
-        
+        fields = ('name', 'points', 'faction', 'roster')        

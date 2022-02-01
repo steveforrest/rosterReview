@@ -25,8 +25,11 @@ def post_roster(request):
         #if the form is valid
         if form.is_valid():
             form.save()
+        
+    else:
+        form = RosterForm()
 
-        return render(request, 'postRoster.html', { 'form': form})
+    return render(request, 'postRoster.html', { 'form': form})
 
 
 def roster_detail(request, id):
@@ -58,27 +61,27 @@ def roster_detail(request, id):
 #         )
 
 
-class RosterDetail(View):
-    context_object_name = 'postRosters'
-    def get(self, request, id, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, id=id)
-        comments = post.comments.filter(approved=True).order_by('created_on')
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+# class RosterDetail(View):
+#     context_object_name = 'postRosters'
+#     def get(self, request, id, *args, **kwargs):
+#         queryset = Post.objects.filter(status=1)
+#         post = get_object_or_404(queryset, id=id)
+#         comments = post.comments.filter(approved=True).order_by('created_on')
+#         liked = False
+#         if post.likes.filter(id=self.request.user.id).exists():
+#             liked = True
 
-        return render(
-            request,
-            "post_detail.html",
-            {
-                "post": post,
-                "comments": comments,
-                "commented": False,
-                "liked": liked,
-                "comment_form": CommentForm()
-            },
-        )
+#         return render(
+#             request,
+#             "post_detail.html",
+#             {
+#                 "post": post,
+#                 "comments": comments,
+#                 "commented": False,
+#                 "liked": liked,
+#                 "comment_form": CommentForm()
+#             },
+#         )
 
 
 

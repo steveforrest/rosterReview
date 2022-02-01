@@ -10,7 +10,6 @@
                 <th> Points </th>
                 <th> List Author </th>
                 <th> List Created On </th>
-                <th> Number Of Comments </th>
                 <th> Likes </th>
                 <th> Dislikes </th>
             </tr>
@@ -38,7 +37,7 @@
                             {{ entry.numberOfLikes.all }}
                         </td>
                         <td>
-                            {{ entry.numberOfDislikes }}
+                            {{ entry.numberOfDislikes.all }}
                         </td>
                 </tr>
             {% endfor %}

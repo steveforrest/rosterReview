@@ -23,16 +23,13 @@
                         aria-label="Home page nav link">Home</a>
                 </li>
                 <li>
-                    <a href="" class="font-color-black text-upper-case no-text-decoration"
-                        aria-label="">Poster Roster</a>
+                    <a href="{% url 'post-roster' %}" class="font-color-black text-upper-case no-text-decoration"
+                        aria-label="">Create Roster</a>
                 </li>
-                <li>
-                    <a href="contact.html" class="font-color-black text-upper-case no-text-decoration "
-                        aria-label="Contact page nav link">Contact us!</a>
-                </li>
+               
             </ul>
         </nav>
-        <a href="index.html" class="no-text-decoration">
+        <a href="{% url 'home' %} " class="no-text-decoration">
             <h1 class="font-color-orange text-upper-case text-center">Army Roster Reviewer</h1>
         </a>
     </header>
