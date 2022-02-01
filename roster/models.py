@@ -5,10 +5,10 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 POINTS = ((500,'500'), (1000,'1000'), (1500, '1500'), (2000, '2000'))
+FACTIONS = (())
 
 class RosterList(models.Model):
     name = models.CharField(max_length=200, unique=True, null=False, blank=False)
-    slug = models.SlugField(max_length=200, unique=True)
     points = models.IntegerField(choices=POINTS)
     faction = models.CharField(max_length=50, null=False, blank=False)
     roster = models.TextField()

@@ -18,7 +18,9 @@
             {% for entry in rosters %}
                 <tr>
                         <td>
-                            {{ entry.name }}
+                            <a href="{% url 'roster-detail' entry.id %}">
+                                {{ entry.name }}
+                            </a>
                         </td>
                         <td>
                             {{ entry.faction }}
@@ -33,14 +35,7 @@
                             {{ entry.createdOn }}
                         </td>
                         <td>
-                            {% if entry.numberOfComments is empty %}
-                                0
-                            {% else %}
-                                {{ entry.numberOfComments }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {{ entry.numberOfLikes }}
+                            {{ entry.numberOfLikes.all }}
                         </td>
                         <td>
                             {{ entry.numberOfDislikes }}

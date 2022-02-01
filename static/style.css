@@ -10,8 +10,7 @@ html{
  
 
 body{
-    width: 1200px;
-    background-color: grey;
+    background-color: #999;
     display: grid;
     flex-direction:column;
     min-height: 100%;
@@ -47,7 +46,7 @@ header {
     padding: 2rem 0;
     flex-flow: column;
     text-align: center;
-    background-color: grey;
+    background-color: #999;
     }
 
 .flex-nav>li {
@@ -61,6 +60,10 @@ header {
 
 .font-color-orange {
     color: #ff5f1f
+}
+
+.font-color-black {
+    color: #000000
 }
 
 /* Table style */
