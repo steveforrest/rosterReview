@@ -22,7 +22,11 @@
  <form method='post'>
      {{comment_form | crispy}}
      {% csrf_token %}
-     <button type='submit'></button>
- </form>
+     <a
+     href="{% url 'home' %} "
+     class="font-color-black text-upper-case no-text-decoration active"
+     aria-label="Home page nav link"
+     ><input type="submit" value="Submit"></a> 
+    </form>
 {% endif %}
 {% endblock content %}

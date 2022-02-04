@@ -1,13 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic, View
 from .models import RosterList
-from .forms import RosterForm, Comment
+from .forms import RosterForm, CommentForm
 from django.views.decorators.csrf import csrf_protect
 
 from .models import FACTIONS
 
 # Create your views here.
 class ListRosters(generic.ListView):
+    """
+    View to post roster the index page
+    """
     model = RosterList
     queryset = RosterList.objects.filter(status=1).order_by('-createdOn')
     template_name = 'index.html'
@@ -17,6 +20,11 @@ class ListRosters(generic.ListView):
 
 @csrf_protect
 def post_roster(request):
+
+    """
+    View to allow user to post a new roster 
+
+    """
 
     # create an empty form  to post into the table
     form = RosterForm()
@@ -43,19 +51,28 @@ def post_roster(request):
     else:
         form = RosterForm()
 
-    return render(
-        request,
-         'postRoster.html',
-          {
-              'form': form,
-              'comment_form': Comment()
-            }
-    )
+    return render(request, 'postRoster.html', {'form': form, 'comment_form': CommentForm()})
 
 
 def roster_detail(request, id):
+    """
+    View to render the roster details
+    """
     post = RosterList.objects.get(pk=id)
-    return render(request, 'RosterDetail.html', { 'post': post, 'factions': FACTIONS })
+    form = CommentForm()
+    if request.method == 'POST':
+        # handle the post and save the form data
+        form = CommentForm(request.POST)
+        return redirect(reverse('roster-detail', args=[id]))
+    else:
+        form = CommentForm()
+    context = {
+        'comment_form': form,
+        'factions': FACTIONS,
+        'post': post,
+        }
+    return render(request, 'RosterDetail.html', context)
+
 
 
 

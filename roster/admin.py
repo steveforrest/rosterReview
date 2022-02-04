@@ -12,3 +12,4 @@ class RosterAdmin(SummernoteModelAdmin):
 @admin.register(Comment)
 class Comment(SummernoteModelAdmin):
     summernote_fields = ('content')
+
