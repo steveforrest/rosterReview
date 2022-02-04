@@ -22,11 +22,26 @@
                     <a href="{% url 'home' %} " class="font-color-black text-upper-case no-text-decoration active"
                         aria-label="Home page nav link">Home</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'account_logout' %}" class="font-color-black text-upper-case no-text-decoration"
+                        aria-label="">Logout</a>
+                </li>
                 <li>
                     <a href="{% url 'post-roster' %}" class="font-color-black text-upper-case no-text-decoration"
                         aria-label="">Create Roster</a>
                 </li>
-               
+                {% else %}
+                <li>
+                    <a href="{% url 'account_signup' %}" class="font-color-black text-upper-case no-text-decoration"
+                        aria-label="">Register</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_login' %}" class="font-color-black text-upper-case no-text-decoration"
+                        aria-label="">Login</a>
+                </li>
+
+               {% endif %}
             </ul>
         </nav>
         <a href="{% url 'home' %} " class="no-text-decoration">

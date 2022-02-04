@@ -1,8 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<form action="{% url 'post-roster' %}" method="POST">
+  {% csrf_token %} {{form}}
 
-{% block content %}
-{{form}}
-
-<a href="{% url 'home' %} " class="font-color-black text-upper-case no-text-decoration active"
-                        aria-label="Home page nav link"><input type="submit" value="Submit"></a>
+  <a
+    href="{% url 'home' %} "
+    class="font-color-black text-upper-case no-text-decoration active"
+    aria-label="Home page nav link"
+    ><input type="submit" value="Submit"
+  /></a>
+</form>
 {% endblock content %}

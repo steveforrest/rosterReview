@@ -12,7 +12,7 @@ class RosterList(models.Model):
     points = models.IntegerField(choices=POINTS)
     faction = models.IntegerField(choices=FACTIONS)
     roster = models.TextField()
-    createdBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
+    createdBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post', null=True, blank=True)
     createdOn = models.DateTimeField(auto_now_add=True)
     numberOfComments = models.ManyToManyField(User, related_name='roster_comments', null=True, blank=True)
     numberOfLikes = models.ManyToManyField(User, related_name='roster_likes', null=True, blank=True)
@@ -28,12 +28,15 @@ class RosterList(models.Model):
 
     def number_of_likes(self):
         return self.numberOfLikes.count()
-    
+
     def number_of_dislikes(self):
         return self.numberOfDislikes.count()
-    
+
     def number_of_comments(self):
         return self.numberOfComments.count()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         
 
 class Comment(models.Model):
@@ -49,3 +52,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment {self.body} by {self.name}'
+

@@ -1,13 +1,28 @@
 {% extends 'base.html' %} {% block content %}
 
+{% load crispy_forms_tags %}
 
 <div>
     <p> <strong> Roster Name :</strong> {{  post.name }}</p>
     <br>
     <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.createdOn}} </p>
     <p> <strong> Points: </strong>{{  post.points }} </p>
-    <p> <strong> Faction: </strong>{{  post.faction }}</p>
+    <p> <strong> Faction: </strong>
+        {% for value, text in factions %}
+            {% if value == post.faction %}
+                {{ text }}
+            {% endif %}
+        {% endfor %}
+    </p>
     <p> {{ post.roster }}
 </div>
 
+{% if user.is_authenticated %}
+ <p>{{user.username}} comments:</p>
+ <form method='post'>
+     {{comment_form | crispy}}
+     {% csrf_token %}
+     <button type='submit'></button>
+ </form>
+{% endif %}
 {% endblock content %}

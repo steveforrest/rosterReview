@@ -10,6 +10,7 @@
                 <th> Points </th>
                 <th> List Author </th>
                 <th> List Created On </th>
+                <th> No. of comments </th>
                 <th> Likes </th>
                 <th> Dislikes </th>
             </tr>
@@ -22,7 +23,11 @@
                             </a>
                         </td>
                         <td>
-                            {{ entry.faction }}
+                            {% for value, text in factions %}
+                                {% if value == entry.faction %}
+                                    {{ text }}
+                                {% endif %}
+                            {% endfor %}
                         </td>
                         <td>
                             {{ entry.points }}
@@ -33,11 +38,15 @@
                         <td>
                             {{ entry.createdOn }}
                         </td>
+            <!-- entry.numberOfLikes.all|length used to display the number of comment,likes and dislikes -->
                         <td>
-                            {{ entry.numberOfLikes.all }}
+                            {{ entry.numberOfComments.all|length }}
                         </td>
                         <td>
-                            {{ entry.numberOfDislikes.all }}
+                            {{ entry.numberOfLikes.all|length }}
+                        </td>
+                        <td>
+                            {{ entry.numberOfDislikes.all|length }}
                         </td>
                 </tr>
             {% endfor %}
