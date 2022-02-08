@@ -1,3 +1,13 @@
+Things to do
+
+add like and dislike buttons to rosters
+add like and dislike to comments
+have an image for each army which will post in roster detail template depending on which faction you pick
+style: text fields so that they are in proportion to the rest of the page
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome steveforrest,
@@ -20,8 +30,7 @@ To run a backend Python file, type `python3 app.py`, if your Python file is name
 
 A blue button should appear to click: _Make Public_,
 
-Another blue button should appear to click: _Open Browser_.
-
+Another blue button should appear to click: _Open Browse
 In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
 To log into the Heroku toolbelt CLI:

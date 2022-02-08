@@ -27,3 +27,22 @@ class CommentForm(ModelForm):
             'comment': SummernoteWidget(),
             'bar': SummernoteInplaceWidget(),
         }
+
+
+class LikesForm(ModelForm):
+    """
+    A form so comments can be added to the roster
+    """
+    
+    class Meta:
+        model = RosterList
+        fields = ('Likes',)
+
+
+class DisikesForm(ModelForm):
+    """
+    A form so comments can be added to the roster
+    """
+    class Meta:
+        model = RosterList
+        fields = ('Dislikes',)

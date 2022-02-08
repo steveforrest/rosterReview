@@ -66,6 +66,10 @@ header {
     color: #000000
 }
 
+.f-a-size {
+    font-size: 1rem;
+}
+
 /* Table style */
 
 .table-flex{

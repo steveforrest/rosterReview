@@ -14,12 +14,48 @@
             {% endif %}
         {% endfor %}
     </p>
-    <p> {{ post.roster }}
+    <p> {{ post.roster }}</p>
+
+    <strong>
+        {% if user.is_authenticated %}
+        <form action="{% url 'like_post' post.id %} " method='POST'>
+            {% csrf_token %}
+            {% if liked %}
+            <button type='submit' name='like_id', value='{{post.id}}'><i class="fas fa-thumbs-up f-a-size"></i></button>
+
+            {% else %}
+            <button type='submit' name='like_id', value='{{post.id}}'><i class="far fa-thumbs-up f-a-size"></i></button> 
+
+            {% endif %}
+        {% else %}
+        <span><i class="far fa-thumbs-up f-a-size"></i></span>
+        {%endif %}
+        <span> {{number_of_likes}} </span>
+        </form>
+</strong>
+<strong>
+    {% if user.is_authenticated %}
+    <form action="{% url 'dislike_post' post.id %} " method='POST'>
+        {% csrf_token %}
+        {% if disliked %}
+        <button type='submit' name='dislike_id', value='{{post.id}}'><i class="fas fa-thumbs-up f-a-size"></i></button>
+
+        {% else %}
+        <button type='submit' name='dislike_id', value='{{post.id}}'><i class="far fa-thumbs-up f-a-size"></i></button> 
+
+        {% endif %}
+    {% else %}
+    <span><i class="far fa-thumbs-up f-a-size"></i></span>
+    {%endif %}
+    <span> {{number_of_dislikes}} </span>
+    </form>
+</strong>
 </div>
 
 {% if user.is_authenticated %}
- <p>{{user.username}} comments:</p>
- <form method='post'>
+ <form action="{% url 'roster-detail' id=post.id %}" method='post'>
+    {% csrf_token %}
+    <p>{{user.username}} comments:</p>
      {{comment_form | crispy}}
      {% csrf_token %}
      <a
@@ -29,4 +65,12 @@
      ><input type="submit" value="Submit"></a> 
     </form>
 {% endif %}
+
+{% for comment in comments %}
+<p> Commented on by {{ comment.commenter }} on {{ comment.createdOn}}</p>
+    <tr>
+        <td>{{comment.comment|safe }}</td> 
+    </tr>
+    <hr>
+{% endfor %}
 {% endblock content %}
