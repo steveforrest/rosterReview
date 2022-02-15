@@ -70,6 +70,11 @@ header {
     font-size: 1rem;
 }
 
+.like-dislike-flex{
+    display: flex
+    
+}
+
 /* Table style */
 
 .table-flex{

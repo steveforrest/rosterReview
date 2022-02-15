@@ -39,9 +39,6 @@ class RosterList(models.Model):
     def number_of_comments(self):
         return self.Comments.count()
 
-    # def number_of_comments(self):
-    #     return self.numberOfComments.count()
-
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 

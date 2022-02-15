@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% block content %}
+{% load crispy_forms_tags %}
 <form action="{% url 'post-roster' %}" method="POST">
-  {% csrf_token %} {{form}}
+  {% csrf_token %} 
+  {{roster_form | safe}}
 
   <a
     href="{% url 'home' %} "

@@ -7,49 +7,51 @@
     <br>
     <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.createdOn}} </p>
     <p> <strong> Points: </strong>{{  post.points }} </p>
-    <p> <strong> Faction: </strong>
+    <p> <strong> Faction: </strong> 
         {% for value, text in factions %}
             {% if value == post.faction %}
                 {{ text }}
             {% endif %}
         {% endfor %}
     </p>
-    <p> {{ post.roster }}</p>
-
+    <p><strong> Roster: </strong> {{ post.roster | safe }}</p>
+</div>
+<div class="like-dislike-flex">
+    <p><strong>Like this post:  </strong></p>
     <strong>
         {% if user.is_authenticated %}
         <form action="{% url 'like_post' post.id %} " method='POST'>
             {% csrf_token %}
             {% if liked %}
-            <button type='submit' name='like_id', value='{{post.id}}'><i class="fas fa-thumbs-up f-a-size"></i></button>
-
+            <button type='submit' name='opinion'><i class="fas fa-thumbs-up f-a-size"></i></button>
             {% else %}
-            <button type='submit' name='like_id', value='{{post.id}}'><i class="far fa-thumbs-up f-a-size"></i></button> 
-
+            <button type='submit' name='opinion'><i class="far fa-thumbs-up f-a-size"></i></button> 
             {% endif %}
         {% else %}
         <span><i class="far fa-thumbs-up f-a-size"></i></span>
         {%endif %}
-        <span> {{number_of_likes}} </span>
+        <p> {{number_of_likes}} </p>
         </form>
-</strong>
-<strong>
-    {% if user.is_authenticated %}
-    <form action="{% url 'dislike_post' post.id %} " method='POST'>
-        {% csrf_token %}
-        {% if disliked %}
-        <button type='submit' name='dislike_id', value='{{post.id}}'><i class="fas fa-thumbs-up f-a-size"></i></button>
 
+    </strong>
+
+    <p><strong>Think the post needs improvement let them know:  </strong></p>
+    <strong>
+        {% if user.is_authenticated %}
+        <form action="{% url 'dislike_post' post.id %} " method='POST'>
+            {% csrf_token %}
+            {% if disliked %}
+            <button type='submit' name='opinion'><i class="fa-solid fa-thumbs-down f-a-size"></i></i></button>
+            {% else %}
+            <button type='submit' name='opinion'><i class="fa-regular fa-thumbs-down f-a-size"></i></i></button> 
+            {% endif %}
         {% else %}
-        <button type='submit' name='dislike_id', value='{{post.id}}'><i class="far fa-thumbs-up f-a-size"></i></button> 
+            <span><i class="far fa-thumbs-up f-a-size"></i></span>
+        {%endif %}
+            <span> {{number_of_dislikes}} </span>
+        </form>
 
-        {% endif %}
-    {% else %}
-    <span><i class="far fa-thumbs-up f-a-size"></i></span>
-    {%endif %}
-    <span> {{number_of_dislikes}} </span>
-    </form>
-</strong>
+    </strong>
 </div>
 
 {% if user.is_authenticated %}

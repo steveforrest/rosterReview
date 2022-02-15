@@ -22,10 +22,7 @@ class ListRosters(generic.ListView):
     context_object_name = 'rosters'
     extra_context = {'factions': FACTIONS }
 
-    # def get(self, request, *args, **kwargs):
-    #     queryset = RosterList.objects.filter(status=1)
-    #     post = get_object_or_404(queryset, pk=id)
-    #     comments = post.comments.filter(approved=True).order_by("-created_on")
+
 
 
 @csrf_protect
@@ -61,73 +58,107 @@ def post_roster(request):
     else:
         form = RosterForm()
 
-    return render(request, 'postRoster.html', {'form': form, 'comment_form': CommentForm()})
+    return render(request, 'postRoster.html', {'roster_form': form, 'comment_form': CommentForm()})
 
 
-def roster_detail(request, id):
+class RosterDetail(View):
     """
-    View to render the roster details
+    view to render the roster details page
     """
-    post = RosterList.objects.get(pk=id)
-    user = User.objects.get(username=request.user.username)
+    def get(self, request, id, *args, **kwargs):
+        """
+        used to get data from the db
+        """
+        queryset = RosterList.objects.filter(status=1)
+        post = get_object_or_404(queryset, pk=id)
+        comments = Comment.objects.filter(post=post)
+        liked = False
+        disliked = False
+        if post.Likes.filter(id=self.request.user.id).exists():
+            liked = True
+            disliked = False
+        elif post.Dislikes.filter(id=self.request.user.id).exists():
+            liked = False
+            disliked = True
+            
+        
+        return render(
+            request,
+            "RosterDetail.html",
+            {
+                "post": post,
+                "comments": comments,
+                "commented": False,
+                'factions': FACTIONS,
+                "liked": liked,
+                "disliked": disliked,
+                "comment_form": CommentForm()
+            },
+        )
 
-    form = CommentForm()
-    
-    if request.method == 'POST':
+    def post(self, request, id, *args, **kwargs):
+        """
+        function to allow view to post to db
+        """
+        post = RosterList.objects.get(pk=id)
+        roster = RosterList.objects.filter(post=post)
+        user = User.objects.get(username=request.user.username)
+        comments = Comment.objects.filter(post=post)
+        # if post.Likes.filter(id=self.request.user.id).exists():
+        #     liked = True
+        #     disliked = False
+        # elif post.Dislikes.filter(id=self.request.user.id).exists():
+        #     liked = False
+        #     disliked = True
         # handle the post and save the form data
         form = CommentForm(request.POST)
         if form.is_valid():
-
             new_form = form.save(commit=False)
             new_form.post = post
             new_form.user = user
             new_form.save()
-
-
             # add the user to the Comments field of the RosterList
             post.Comments.add(user)
             # save the RosterList
             post.save()
+        context = {
+            'LikesForm': form,
+            'DisikesForm': form,
+            'comment_form': form,
+            'factions': FACTIONS,
+            'post': post,
+            'comments': comments,
+            'roster': roster,
+        }
+        # use the post variable which gets the object needed to be acounted by its id and create a variable set it to count and call the method created to count the likes in the model
+        number_of_likes = post.number_of_likes()
+        number_of_dislikes = post.number_of_dislikes()
+        number_of_comments = post.number_of_comments()
 
-        return redirect(reverse('roster-detail', args=[id]))
-    else:
-        # Getting the comments stored on the database related to the id of the post above
-        # filter the comments by the post filed on the Comment model
-        comments = Comment.objects.filter(post=post)
-        form = CommentForm()
-   
-   
-    context = {
-        'LikesForm': form,
-        'comment_form': form,
-        'factions': FACTIONS,
-        'post': post,
-        'comments': comments
-    }
-# use the post variable which gets the object needed to be acounted by its id and create a variable set it to count and call the method created to count the likes in the model
-    number_of_likes = post.number_of_likes()
-    number_of_dislikes = post.number_of_dislikes()
-    number_of_comments = post.number_of_comments()
+        context['number_of_likes'] = number_of_likes
+        context['number_of_dislikes'] = number_of_dislikes
+        context['number_of_comments'] = number_of_comments
 
-    context['number_of_likes'] = number_of_likes
-    context['number_of_dislikes'] = number_of_dislikes
-    context['number_of_comments'] = number_of_comments
-
-    # return redirect(reverse('home'))
-    return render(request, 'RosterDetail.html', context)
+        # return redirect(reverse('home'))
+        return render(request, 'RosterDetail.html',{
+            'roster_form': RosterForm(),
+        },
+        context)
 
 
+    
 class PostLike(View):
     '''
     view for the likes on a list
     '''
-    def Post(self, request, pk):
-        post = get_object_or_404(Post, pk=id)
+    def post(self, request, id, *args, **kwargs):
+        post = get_object_or_404(RosterList, pk=id)
 
-        if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request,user)
+        if post.Likes.filter(id=request.user.id).exists():
+            post.Likes.remove(request.user)
         else:
-            post.likes.add(request,user)
+            post.Likes.add(request.user)
+            post.Dislikes.remove(request.user)
         return HttpResponseRedirect(reverse('roster-detail', args=[id]))
 
 
@@ -135,12 +166,13 @@ class PostDislike(View):
     '''
     view for the likes on a list
     '''
-    def PostDislike(self, request, pk):
-        post = get_object_or_404(Post, pk=id)
+    def post(self, request, id, *args, **kwargs):
+        post = get_object_or_404(RosterList, pk=id)
 
-        if post.dislike.filter(id=request.user.id).exists():
-            post.dislike.remove(request,user)
+        if post.Dislikes.filter(id=request.user.id).exists():
+            post.Dislikes.remove(request.user)
         else:
-            post.dislike.add(request,user)
+            post.Dislikes.add(request.user)
+            post.Likes.remove(request.user)
         return HttpResponseRedirect(reverse('roster-detail', args=[id]))
  
