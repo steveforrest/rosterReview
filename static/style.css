@@ -14,6 +14,7 @@ body{
     display: grid;
     flex-direction:column;
     min-height: 100%;
+    max-width: 560px;
 }
 
 .body-flex{
