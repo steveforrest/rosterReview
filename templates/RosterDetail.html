@@ -23,9 +23,9 @@
         <form action="{% url 'like_post' post.id %} " method='POST'>
             {% csrf_token %}
             {% if liked %}
-            <button type='submit' name='opinion'><i class="fas fa-thumbs-up f-a-size"></i></button>
+            <button type='submit' name='opinion'><i class="fa-solid fa-thumbs-up"></i></button>
             {% else %}
-            <button type='submit' name='opinion'><i class="far fa-thumbs-up f-a-size"></i></button> 
+            <button type='submit' name='opinion'><i class="fa-regular fa-thumbs-up"></i></button> 
             {% endif %}
         {% else %}
         <span><i class="far fa-thumbs-up f-a-size"></i></span>
@@ -41,9 +41,9 @@
         <form action="{% url 'dislike_post' post.id %} " method='POST'>
             {% csrf_token %}
             {% if disliked %}
-            <button type='submit' name='opinion'><i class="fa-solid fa-thumbs-down f-a-size"></i></i></button>
+            <button type='submit' name='opinion'><i class="fa-solid fa-thumbs-down"></i></i></i></button>
             {% else %}
-            <button type='submit' name='opinion'><i class="fa-regular fa-thumbs-down f-a-size"></i></i></button> 
+            <button type='submit' name='opinion'><i class="fa-regular fa-thumbs-down"></i></button> 
             {% endif %}
         {% else %}
             <span><i class="far fa-thumbs-up f-a-size"></i></span>
