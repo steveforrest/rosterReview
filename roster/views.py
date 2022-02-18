@@ -100,8 +100,9 @@ class RosterDetail(View):
         """
         function to allow view to post to db
         """
+        print(id)
         post = RosterList.objects.get(pk=id)
-        roster = RosterList.objects.filter(post=post)
+        # roster = RosterList.objects.filter(post=post)
         user = User.objects.get(username=request.user.username)
         comments = Comment.objects.filter(post=post)
         # if post.Likes.filter(id=self.request.user.id).exists():
@@ -115,7 +116,7 @@ class RosterDetail(View):
         if form.is_valid():
             new_form = form.save(commit=False)
             new_form.post = post
-            new_form.user = user
+            new_form.commenter = user
             new_form.save()
             # add the user to the Comments field of the RosterList
             post.Comments.add(user)
@@ -128,7 +129,6 @@ class RosterDetail(View):
             'factions': FACTIONS,
             'post': post,
             'comments': comments,
-            'roster': roster,
         }
         # use the post variable which gets the object needed to be acounted by its id and create a variable set it to count and call the method created to count the likes in the model
         number_of_likes = post.number_of_likes()
@@ -138,11 +138,10 @@ class RosterDetail(View):
         context['number_of_likes'] = number_of_likes
         context['number_of_dislikes'] = number_of_dislikes
         context['number_of_comments'] = number_of_comments
+        context['roster_form'] = RosterForm()
 
         # return redirect(reverse('home'))
-        return render(request, 'RosterDetail.html',{
-            'roster_form': RosterForm(),
-        },
+        return render(request, 'RosterDetail.html',
         context)
 
 

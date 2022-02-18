@@ -10,7 +10,7 @@ html{
  
 
 body{
-    background-color: #999;
+    background-color: white;
     display: grid;
     flex-direction:column;
     min-height: 100%;
@@ -20,6 +20,7 @@ body{
 .body-flex{
     max-width: 500px;
     margin: 0 auto;
+    justify-content: space-around;
 }
 
 .list-styling{
@@ -47,7 +48,7 @@ header {
     padding: 2rem 0;
     flex-flow: column;
     text-align: center;
-    background-color: #999;
+    background-color: white;
     }
 
 .flex-nav>li {
@@ -110,15 +111,14 @@ footer {
     border-top: 2px solid #3b3355;
     background-color: black;
     color: white;
-    margin-top: auto;
-    font-size: 0.25rem;
+    position: relative;
+    max-height: 200px;
+    font-size: 0.4rem;
 }
 
 .flex-footer {
     display: flex;
     justify-content: space-around;
-    flex-flow: column;
-
 }
 
 .flex-footer>div {
@@ -126,6 +126,9 @@ footer {
     padding: 2rem 0;
 }
 
+.posted-roster-detail{
+    font-size: 1rem;
+}
 
 /* media queries */
 @media screen and (min-width: 576px) {
