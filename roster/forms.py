@@ -8,7 +8,6 @@ class RosterForm(ModelForm):
     """
     A form for a user to create a new roster
     """
-    'name'
     class Meta:
         model = RosterList
         fields = ('name', 'points', 'faction', 'roster')        
@@ -24,24 +23,6 @@ class CommentForm(ModelForm):
         model = Comment
         fields = ('comment',)
         widgets = {
-            # 'comment': SummernoteWidget(),
+            'comment': SummernoteWidget(),
         }
 
-
-# class LikesForm(ModelForm):
-#     """
-#     A form so comments can be added to the roster
-#     """
-    
-#     class Meta:
-#         model = RosterList
-#         fields = ('Likes',)
-
-
-# class DisikesForm(ModelForm):
-#     """
-#     A form so comments can be added to the roster
-#     """
-#     class Meta:
-#         model = RosterList
-#         fields = ('Dislikes',)

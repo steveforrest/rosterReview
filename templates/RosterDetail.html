@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
 {% load crispy_forms_tags %}
-
-<div>
-    <p> <strong> Roster Name :</strong> {{  post.name }}</p>
+<section class="roster-detail">
+    <div>
+    <p class="roster-styling"> <strong> Roster Name :</strong> {{  post.name }}</p>
     <br>
     <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.createdOn}} </p>
     <p> <strong> Points: </strong>{{  post.points }} </p>
@@ -63,8 +63,9 @@
      <a
      href="{% url 'home' %} "
      class="font-color-black text-upper-case no-text-decoration active"
-     aria-label="Home page nav link"
-     ><input type="submit" value="Submit"></a> 
+     aria-label="Home page nav link">
+     <input class="button" type="submit" value="Submit">
+    </a> 
     </form>
 {% endif %}
 
@@ -73,6 +74,6 @@
     <tr>
         <td>{{comment.comment|safe }}</td> 
     </tr>
-    <hr>
 {% endfor %}
+</section>
 {% endblock content %}

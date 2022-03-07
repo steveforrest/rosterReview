@@ -14,89 +14,91 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
-    <div class="body-flex">
-    <header>
-        <!-- Nav bar -->
-        <nav class="flex-nav">
-            <ul class="list-styling">
-                <li>
-                    <a href="{% url 'home' %} " class="font-color-black text-upper-case no-text-decoration active"
-                        aria-label="Home page nav link">Home</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li>
-                    <a href="{% url 'account_logout' %}" class="font-color-black text-upper-case no-text-decoration"
-                        aria-label="">Logout</a>
-                </li>
-                <li>
-                    <a href="{% url 'post-roster' %}" class="font-color-black text-upper-case no-text-decoration"
-                        aria-label="">Create Roster</a>
-                </li>
-                {% else %}
-                <li>
-                    <a href="{% url 'account_signup' %}" class="font-color-black text-upper-case no-text-decoration"
-                        aria-label="">Register</a>
-                </li>
-                <li>
-                    <a href="{% url 'account_login' %}" class="font-color-black text-upper-case no-text-decoration"
-                        aria-label="">Login</a>
-                </li>
-
-               {% endif %}
-            </ul>
-        </nav>
-        <a href="{% url 'home' %} " class="no-text-decoration">
-            <h1 class="font-color-orange text-upper-case text-center">Army Roster Reviewer</h1>
-        </a>
-    </header>
+<body {% if request.path == '/' %} id="index-background" class="background" {% elif request.path == '/post-roster/'%} id="roster-build-background" class="background" {% elif request.path == '/accounts/' %} class="background" id="account-background"{% endif %}>
+        <header class="header-flex">
+            <!-- Nav bar -->
+            <a href="{% url 'home' %} " class="no-text-decoration">
+                <h1 class="font-color-orange text-upper-case text-center">Army Roster Reviewer</h1>
+            </a>
+            <nav class="flex-nav">
+                <ul class="list-styling">
+                    <li>
+                        <a href="{% url 'home' %} " class="font-color-orange text-upper-case no-text-decoration active"
+                            aria-label="Home page nav link">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'account_logout' %}" class="font-color-orange text-upper-case no-text-decoration"
+                            aria-label="">Logout</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'post-roster' %}" class="font-color-orange text-upper-case no-text-decoration"
+                            aria-label="">Create Roster</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'account_signup' %}" class="font-color-orange text-upper-case no-text-decoration"
+                            aria-label="">Register</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'account_login' %}" class="font-color-orange text-upper-case no-text-decoration"
+                            aria-label="">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
     <!-- Body block -->
     
-    {% block content %}
-    
-    {% endblock content  %}
+        <main>
+        
+        {% block content %}
+        
+        {% endblock content  %}
+        
+        </main>
+        
+        <!-- Footer -->
+        <footer class="flex-footer">
+            <div>
+                <p class="font-color-orange text-center">Contact us</p>
+                <br>
+                <ul class="no-list-decor">
+                    <li class="font-color-orange text-center">Find us on instagram to see more of our work, click
+                        here:
+                        <a href="http://instagram.com" rel="noopener" target="_blank"
+                            aria-label="Visit our instagram page (opens in new tab)">
+                            <i class="fab fa-instagram font-color-orange"></i>
+                        </a>
+                    </li>
+                    <li class="font-color-orange text-center">Contact us by Email:
+                        <a href="mailto:steveforrrest_1@hotmail.com" aria-label="Email us here: "><i
+                                class="fas fa-at font-color-orange"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-    <!-- Footer -->
-    <footer class="flex-footer">
-        <div>
-            <p class="font-color-orange text-center">Contact us</p>
-            <br>
-            <ul class="no-list-decor">
-                <li class="font-color-orange text-center">Find us on instagram to see more of our work, click
-                    here:
-                    <a href="http://instagram.com" rel="noopener" target="_blank"
-                        aria-label="Visit our instagram page (opens in new tab)">
-                        <i class="fab fa-instagram font-color-orange"></i>
-                    </a>
-                </li>
-                <li class="font-color-orange text-center">Contact us by Email:
-                    <a href="mailto:steveforrrest_1@hotmail.com" aria-label="Email us here: "><i
-                            class="fas fa-at font-color-orange"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div>
-            <p class="font-color-orange text-center">Helpful links</p>
-            <br>
-            <ul class="no-list-decor">
-                <li class="font-color-orange text-center list-style">Buy new supplies from Games Workshop:
-                    <a href="https://www.games-workshop.com/en-GB/Home" rel="noopener" target="_blank"
-                        aria-label="Visit Games workshop webstore to buy new supplies (opens in new tab)">
-                        <i class="fas fa-radiation-alt font-color-orange"></i>
-                    </a>
-                </li>
-                <li class="font-color-orange text-center list-style">Check out Warhammer community to find
-                    out more about the hobby:
-                    <a href="https://www.warhammer-community.com/" rel="noopener" target="_blank"
-                        aria-label="Visit the main warhammer community page (opens in new tab)">
-                        <i class="fab fa-galactic-senate font-color-orange"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </footer>
-</div>
+            <div>
+                <p class="font-color-orange text-center">Helpful links</p>
+                <br>
+                <ul class="no-list-decor">
+                    <li class="font-color-orange text-center list-style">Buy new supplies from Games Workshop:
+                        <a href="https://www.games-workshop.com/en-GB/Home" rel="noopener" target="_blank"
+                            aria-label="Visit Games workshop webstore to buy new supplies (opens in new tab)">
+                            <i class="fas fa-radiation-alt font-color-orange"></i>
+                        </a>
+                    </li>
+                    <li class="font-color-orange text-center list-style">Check out Warhammer community to find
+                        out more about the hobby:
+                        <a href="https://www.warhammer-community.com/" rel="noopener" target="_blank"
+                            aria-label="Visit the main warhammer community page (opens in new tab)">
+                            <i class="fab fa-galactic-senate font-color-orange"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+<script src="static/js/script.js"></script>
 </body>
 </html>

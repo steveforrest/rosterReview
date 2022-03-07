@@ -4,23 +4,21 @@
     margin: 0;
 }
 
-html{
-    height: 100%;
-}
- 
-
 body{
-    background-color: white;
-    display: grid;
-    flex-direction:column;
-    min-height: 100%;
-    max-width: 560px;
+    background-color: rgb(10,0,0);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.body-flex{
-    max-width: 500px;
-    margin: 0 auto;
+.background-colour-white{
+    background-color: white;
+}
+
+.header-flex{
+    display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .list-styling{
@@ -36,8 +34,17 @@ body{
 }
 
 header {
-    background-color: black;
+    background-color: rgb(10,0,0);
     border-bottom: 2px solid #3b3355;
+ }
+
+ main {
+     flex-grow: 1;
+ }
+
+ .account-styling {
+    display: flex;
+    flex-direction: column;
  }
 
  .flex-nav {
@@ -48,7 +55,7 @@ header {
     padding: 2rem 0;
     flex-flow: column;
     text-align: center;
-    background-color: white;
+    background-color: rgb(10,0,0);
     }
 
 .flex-nav>li {
@@ -68,13 +75,55 @@ header {
     color: #000000
 }
 
-.f-a-size {
-    font-size: 1rem;
+/* Button styling */
+
+.button{
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: black;
+    color: #fff;
+    background-color: #ff5f1f;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    margin: 25px;
 }
+
+.button:hover {
+    background-color: #ffc61d
+}
+
+.button:active {
+  background-color: #ec5f28c5;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* like dislike flex */
 
 .like-dislike-flex{
     display: flex
-    
+}
+
+/* form */
+
+.form-flex{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    color: white;
+    padding:0.5rem;
+    text-shadow:
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+     -2px 2px 0 #000,
+      2px 2px 0 #000;
 }
 
 /* Table style */
@@ -89,6 +138,7 @@ table{
     margin: 2rem 0;
     border-collapse: collapse;
 }
+
 
 td, th{
     font-size: 0.5rem;
@@ -109,11 +159,26 @@ tr{
 
 footer {
     border-top: 2px solid #3b3355;
-    background-color: black;
+    background-color: rgb(10,0,0);
     color: white;
-    position: relative;
-    max-height: 200px;
     font-size: 0.4rem;
+}
+
+ul {
+    list-style-type: none;
+}
+.roster-styling{
+    padding: 1rem;
+}
+
+.roster-create{
+    padding: 5rem 3rem;
+}
+
+.roster-detail{
+    background-color: rgba(255, 255, 2550, 0.4);
+    padding: 10rem 3rem;
+
 }
 
 .flex-footer {
@@ -122,7 +187,6 @@ footer {
 }
 
 .flex-footer>div {
-
     padding: 2rem 0;
 }
 
@@ -130,15 +194,61 @@ footer {
     font-size: 1rem;
 }
 
+
+/* back ground images */
+
+.background {
+    /* Full height */
+    height: 100vh;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#index-background {
+    /* Url of image */
+    background-image: url('../img/index.jpeg');
+}
+
+#roster-build-background {
+    background-image: url('../img/rosterBackground.jpeg');
+}
+
+#account-background{
+    background-image: url('../img/account-background.jpeg');
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#id_roster_iframe {
+    padding: 0 2vw;
+}
+
+input{
+    border:solid 2px black;
+}
+
+#id_points{
+    border:solid 2px black;
+}
+
+#id_faction{
+    border:solid 2px black;
+}
+
 /* media queries */
 @media screen and (min-width: 576px) {
 
     h1 {
         font-size: 3rem;
-        padding: 5rem 0;
+        padding: 3rem 0;
     }
 
-    nav {
+    .flex-nav {
         font-size: 0.75rem;
     }
 
@@ -146,101 +256,51 @@ footer {
         flex-flow: row;
     }
 
-    h3 {
-        font-size: 1.5rem;
-
-    }
-
-    h6 {
-        padding: 1rem;
-        font-size: 1rem;
-    }
-
-    /* home page */
-
-     #reasons-list>li {
-        margin: 0 1rem;
-    }
-
-    /*form reposition and resize*/
-
-    .enquiry-form {
-        border: 3px solid #3b3355;
-        border-radius: 5px;
-        background: RGBA(255, 95, 31, .5);
-        font-size: 1rem;
-        margin: 2rem 0;
-    }
-
-    input,
-    textarea {
-        width: 90%;
-        display: block;
-        border: 2px solid #3B3355;
-        border-radius: inherit;
-        margin: 1rem;
-    }
-
-    label {
-        display: block;
-        width: 100%;
-        padding: 0.5rem 0 0.05rem;
-    }
 
 }
 
 @media screen and (min-width: 768px) {
-
-    /* home page */
-
-    .flex-home-content {
-        flex-direction: row;
+   
+    td, th{
+        font-size: 0.75rem; 
     }
 
+    #account-background{
+        font-size: 2rem;
+    }
+    
+    footer{
+        font-size: 0.75rem;
+    }
+}
+   
+@media screen and (min-width: 992px) {
 
-    .flex-home-content>li {
-        padding: 0.5rem;
-        width: 50%;
+    td, th{
+        font-size: 1rem; 
     }
 
-    /* code for contact page */
-
-    .contact-flex {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        font-size: 1.1rem;
-        text-align: center;
-        list-style-type: none;
-        width: 100%;
-        align-items: center;
-    }
-
-    .contact-img {
-        width: 45%;
+    footer{
+        font-size: 0.75rem;
     }
 
 }
-
-@media screen and (min-width: 992px) {
-
-    #home-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: minmax(3rem, auto);
-        grid-gap: 1rem;
-        display: grid;
-        max-width: 90%;
-        margin: 0 auto;
-    }
-
-    /*home page */
-
-
-
 @media screen and (min-width: 1200px) {
     
     body{
         max-width: 1200px;
         margin: 0 auto;
     }
+
+    .background {
+        background-size: 1200px 100%;    }
+
+    td, th{
+        font-size: 1.5rem; 
+    }
+
+    footer{
+        font-size:1rem;
+    }
+}
 

@@ -1,55 +1,55 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div>
-        <table class="table-flex">
-            {% comment %} Table headings {% endcomment %}
-            <tr>
-                <th> Roster Name </th>
-                <th> Faction </th>
-                <th> Points </th>
-                <th> List Author </th>
-                <th> List Created On </th>
-                <th> No. of comments </th>
-                <th> Likes </th>
-                <th> Dislikes </th>
-            </tr>
+    <table class="table-flex">
+        {% comment %} Table headings {% endcomment %}
+        <tr>
+            <th> Roster Name </th>
+            <th> Faction </th>
+            <th> Points </th>
+            <th> List Author </th>
+            <th> List Created On </th>
+            <th> No. of comments </th>
+            <th> Likes </th>
+            <th> Dislikes </th>
+        </tr>
 
-            {% for entry in rosters %}
-                <tr>
-                        <td>
-                            <a href="{% url 'roster-detail' entry.id %}">
-                                {{ entry.name }}
-                            </a>
-                        </td>
-                        <td>
-                            {% for value, text in factions %}
-                                {% if value == entry.faction %}
-                                    {{ text }}
-                                {% endif %}
-                            {% endfor %}
-                        </td>
-                        <td>
-                            {{ entry.points }}
-                        </td>
-                        <td>
-                            {{ entry.createdBy }}
-                        </td>
-                        <td>
-                            {{ entry.createdOn }}
-                        </td>
+        {% for entry in rosters %}
+        <tr>
+            <td>
+                <a href="{% url 'roster-detail' entry.id %}">
+                    {{ entry.name }}
+                </a>
+            </td>
+                        
+            <td>
+                {% for value, text in factions %}
+                    {% if value == entry.faction %}
+                        {{ text }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {{ entry.points }}
+            </td>
+            <td>
+                {{ entry.createdBy }}
+            </td>
+            <td>
+                {{ entry.createdOn }}
+            </td>
             <!-- entry.numberOfLikes.all|length used to display the number of comment,likes and dislikes -->
-                        <td>
-                            {{ entry.Comments.all|length }}
-                        </td>
-                        <td>
-                            {{ entry.Likes.all|length }}
-                        </td>
-                        <td>
-                            {{ entry.Dislikes.all|length }}
-                        </td>
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
+            <td>
+                {{ entry.Comments.all|length }}
+            </td>
+            <td>
+                {{ entry.Likes.all|length }}
+            </td>
+            <td>
+                {{ entry.Dislikes.all|length }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    </main>
 {% endblock content %}
