@@ -48,6 +48,16 @@
                 </ul>
             </nav>
         </header>
+
+        {% comment %} <div>
+            {% for message in messages %}
+            <div class=" {{ message. tags }} alert-dismissable fade show" id="msg" role="alert">
+            {{ message | safe}}
+            </div>
+
+            {% endfor %}
+        </div> {% endcomment %}
+
     <!-- Body block -->
     
         <main>

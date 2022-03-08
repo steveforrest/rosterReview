@@ -176,7 +176,7 @@ ul {
 }
 
 .roster-detail{
-    background-color: rgba(255, 255, 2550, 0.4);
+    background-color: rgba(255, 255, 250, 0.4);
     padding: 10rem 3rem;
 
 }
@@ -194,6 +194,15 @@ ul {
     font-size: 1rem;
 }
 
+/* Set font awesom back ground transparent */
+
+i::before{
+    background:transparent;
+}
+
+.transparent-button {
+    background:transparent;
+}
 
 /* back ground images */
 
@@ -215,7 +224,7 @@ ul {
     background-image: url('../img/rosterBackground.jpeg');
 }
 
-#account-background{
+#account-background {
     background-image: url('../img/account-background.jpeg');
     min-height: 50vh;
     display: flex;
@@ -232,12 +241,18 @@ input{
     border:solid 2px black;
 }
 
-#id_points{
+#id_points {
     border:solid 2px black;
 }
 
-#id_faction{
+#id_faction {
     border:solid 2px black;
+}
+
+/* link-style */
+
+.link-style {
+    color: black;
 }
 
 /* media queries */
