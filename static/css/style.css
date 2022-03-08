@@ -217,15 +217,15 @@ i::before{
 
 #index-background {
     /* Url of image */
-    background-image: url('/static/img/index.jpeg');
+    background-image: url('/media/index.jpeg');
 }
 
 #roster-build-background {
-    background-image: url('/static/img/rosterBackground.jpeg');
+    background-image: url('/media/rosterBackground.jpeg');
 }
 
 #account-background {
-    background-image: url('/static/img/account-background.jpeg');
+    background-image: url('/media/account-background.jpeg');
     min-height: 50vh;
     display: flex;
     flex-direction: column;
