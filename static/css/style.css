@@ -217,7 +217,7 @@ i::before{
 
 #index-background {
     /* Url of image */
-    background-image: url('/static/images/index.jpeg');
+    background-image: url('https://res.cloudinary.com/dxav2jkm3/image/upload/v1646779041/static/images/index.jpg');
 }
 
 #roster-build-background {
@@ -225,7 +225,7 @@ i::before{
 }
 
 #account-background {
-    background-image: url('/static/images/account-background.jpeg');
+    background-image: url('https://res.cloudinary.com/dxav2jkm3/image/upload/v1646779042/static/images/account-background.jpg');
     min-height: 50vh;
     display: flex;
     flex-direction: column;
