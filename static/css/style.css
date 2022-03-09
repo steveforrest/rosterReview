@@ -221,7 +221,7 @@ i::before{
 }
 
 #roster-build-background {
-    background-image: url('/static/images/rosterBackground.jpeg');
+    background-image: url('https://res.cloudinary.com/dxav2jkm3/image/upload/v1646779043/static/images/rosterBackground.93d8673c9637.jpg');
 }
 
 #account-background {
