@@ -5,7 +5,7 @@
     <div>
     <p class="roster-styling"> <strong> Roster Name :</strong> {{  post.name }}</p>
     <br>
-    <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.createdOn}} </p>
+    <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.created_on}} </p>
     <p> <strong> Points: </strong>{{  post.points }} </p>
     <p> <strong> Faction: </strong> 
         {% for value, text in factions %}
@@ -70,7 +70,7 @@
 {% endif %}
 
 {% for comment in comments %}
-<p> Commented on by {{ comment.commenter }} on {{ comment.createdOn}}</p>
+<p> Commented on by {{ comment.commenter }} on {{ comment.created_on}}</p>
     <tr>
         <td>{{comment.comment|safe }}</td> 
     </tr>

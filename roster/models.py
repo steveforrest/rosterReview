@@ -10,34 +10,39 @@ FACTIONS = ((1, 'Space Marine'), (2, 'Orcs'), (3, 'Nids'), (4, 'Adeptus Mechanic
 
 class RosterList(models.Model):
     """
-    model to save the rosters to
+    Save the rosters
     """
-    name = models.CharField(max_length=200, unique=True, null=False, blank=False)
-    points = models.IntegerField(choices=POINTS)
-    faction = models.IntegerField(choices=FACTIONS)
+    name = models.CharField(max_length=200, unique=True)
+    points = models.PositiveSmallIntegerField(choices=POINTS)
+    faction = models.PositiveSmallIntegerField(choices=FACTIONS)
     roster = models.TextField()
-    createdBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post', null=True, blank=True)
-    createdOn = models.DateTimeField(auto_now_add=True)
-    Comments = models.ManyToManyField(User, related_name='roster_comments', blank=True)
-    Likes = models.ManyToManyField(User, related_name='roster_likes', blank=True)
-    Dislikes = models.ManyToManyField(User, related_name='roster_dislikes', blank=True)
+    # changed field name
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post', null=True, blank=True)
+    # changed field name
+    created_on = models.DateTimeField(auto_now_add=True)
+    # changed field name
+    list_comments = models.ManyToManyField(User, related_name='roster_comments')
+    # changed field name
+    likes = models.ManyToManyField(User, related_name='roster_likes')
+    # changed field name
+    dislikes = models.ManyToManyField(User, related_name='roster_dislikes')
     status = models.IntegerField(choices=STATUS, default=0)
 
 
     class Meta:
-        ordering = ['-createdOn']
+        ordering = ['-created_on']
 
     def __str__(self):
         return self.name
 
     def number_of_likes(self):
-        return self.Likes.count()
+        return self.likes.count()
 
     def number_of_dislikes(self):
-        return self.Dislikes.count()
+        return self.dislikes.count()
 
     def number_of_comments(self):
-        return self.Comments.count()
+        return self.comments.count()
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -45,18 +50,21 @@ class RosterList(models.Model):
 
 class Comment(models.Model):
     """
-    model used to add comments to posts
+    Adds comments to posts
     """
     post = models.ForeignKey(RosterList, on_delete=models.CASCADE, related_name='comments')
     comment = models.TextField()
     # commenter is a new entry so the name of the person adding the comment can be recorded
-    commenter =  models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_author', null=True, blank=True)
-    createdOn = models.DateTimeField(auto_now_add=True)
-    numberOfLikes = models.ManyToManyField(User, related_name='comment_likes', blank=True)
-    numberOfDislikes = models.ManyToManyField(User, related_name='comment_dislikes', blank=True)
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_author', null=True, blank=True)
+    # changed field name
+    created_on = models.DateTimeField(auto_now_add=True)
+    # changed field name
+    number_of_likes = models.ManyToManyField(User, related_name='comment_likes', blank=True)
+    # changed field name
+    number_of_dislikes = models.ManyToManyField(User, related_name='comment_dislikes', blank=True)
 
 
     class Meta:
-        ordering = ['createdOn']
+        ordering = ['created_on']
 
   

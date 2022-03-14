@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 from .models import FACTIONS
@@ -16,7 +18,7 @@ class ListRosters(generic.ListView):
     View to post roster the index page
     """
     model = RosterList
-    queryset = RosterList.objects.filter(status=1).order_by('-createdOn')
+    queryset = RosterList.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 10
     context_object_name = 'rosters'
@@ -26,6 +28,7 @@ class ListRosters(generic.ListView):
 
 
 @csrf_protect
+@login_required
 def post_roster(request):
 
     """
@@ -43,11 +46,11 @@ def post_roster(request):
         if form.is_valid():
 
             new_form = form.save(commit=False)
-            #check if user is authenticated if so use their username if not use guest as createdBy 
+            #check if user is authenticated if so use their username if not use guest as created_by 
             if request.user.is_authenticated:
-                new_form.createdBy = request.user
+                new_form.created_by = request.user
             else:
-                new_form.createdBy = "guest"
+                new_form.created_by = "guest"
             
             new_form.status = 1
             new_form.save()
@@ -71,13 +74,14 @@ class RosterDetail(View):
         """
         queryset = RosterList.objects.filter(status=1)
         post = get_object_or_404(queryset, pk=id)
+        user = User.objects.get(username=request.user.username)
         comments = Comment.objects.filter(post=post)
         liked = False
         disliked = False
-        if post.Likes.filter(id=self.request.user.id).exists():
+        if post.likes.filter(id=self.request.user.id).exists():
             liked = True
             disliked = False
-        elif post.Dislikes.filter(id=self.request.user.id).exists():
+        elif post.dislikes.filter(id=self.request.user.id).exists():
             liked = False
             disliked = True
             
@@ -92,25 +96,19 @@ class RosterDetail(View):
                 'factions': FACTIONS,
                 "liked": liked,
                 "disliked": disliked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                'user': user,
             },
         )
 
+    @method_decorator(login_required)
     def post(self, request, id, *args, **kwargs):
         """
         function to allow view to post to db
         """
-        print(id)
         post = RosterList.objects.get(pk=id)
-        # roster = RosterList.objects.filter(post=post)
         user = User.objects.get(username=request.user.username)
         comments = Comment.objects.filter(post=post)
-        # if post.Likes.filter(id=self.request.user.id).exists():
-        #     liked = True
-        #     disliked = False
-        # elif post.Dislikes.filter(id=self.request.user.id).exists():
-        #     liked = False
-        #     disliked = True
         # handle the post and save the form data
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -119,9 +117,10 @@ class RosterDetail(View):
             new_form.commenter = user
             new_form.save()
             # add the user to the Comments field of the RosterList
-            post.Comments.add(user)
+            post.list_comments.add(user)
             # save the RosterList
             post.save()
+            print(form)
         context = {
             'LikesForm': form,
             'DisikesForm': form,
@@ -141,8 +140,7 @@ class RosterDetail(View):
         context['roster_form'] = RosterForm()
 
         # return redirect(reverse('home'))
-        return render(request, 'RosterDetail.html',
-        context)
+        return render(request, 'RosterDetail.html', context)
 
 
     
@@ -153,25 +151,25 @@ class PostLike(View):
     def post(self, request, id, *args, **kwargs):
         post = get_object_or_404(RosterList, pk=id)
 
-        if post.Likes.filter(id=request.user.id).exists():
-            post.Likes.remove(request.user)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
         else:
-            post.Likes.add(request.user)
-            post.Dislikes.remove(request.user)
+            post.likes.add(request.user)
+            post.dislikes.remove(request.user)
         return HttpResponseRedirect(reverse('roster-detail', args=[id]))
 
 
 class PostDislike(View):
     '''
-    view for the likes on a list
+    view for the dislikes on a list
     '''
     def post(self, request, id, *args, **kwargs):
         post = get_object_or_404(RosterList, pk=id)
 
-        if post.Dislikes.filter(id=request.user.id).exists():
-            post.Dislikes.remove(request.user)
+        if post.dislikes.filter(id=request.user.id).exists():
+            post.dislikes.remove(request.user)
         else:
-            post.Dislikes.add(request.user)
-            post.Likes.remove(request.user)
+            post.dislikes.add(request.user)
+            post.likes.remove(request.user)
         return HttpResponseRedirect(reverse('roster-detail', args=[id]))
  

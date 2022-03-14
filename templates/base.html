@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <title>Army Roster Reviewer</title>
     <meta name="description"
-        content="Ever wanted to buy a minature painted with epic skill, or just not had the time to paint them yourself? Then let us help. Come and look at our existing works and contact our painters to commission them directly">
-    <meta name="keywords" content="Models, painted, epic, commision, birmingham, UK">
+        content="Made a list not sure how effective it will be? Post it here and have it reviewed by others who share your passion.">
+    <meta name="keywords" content="WarHammer, Rosters, Lists">
     <meta name="author" content="Steve Forrest">
     <script src="https://kit.fontawesome.com/6ac3c717c4.js" crossorigin="anonymous"></script>
     <title>Document</title>
@@ -49,15 +49,16 @@
             </nav>
         </header>
 
-        <div>
+        {% if messages %}
+        <div class="message-box" id="msg">
             {% for message in messages %}
-            <div class=" {{ message.tags }} alert-dismissable fade show" id="msg" role="alert">
+                <div class=" {{ message.tags }} alert-dismissable fade show" role="alert">
             {{ message | safe}}
             </div>
 
             {% endfor %}
         </div>
-
+        {% endif %}
     <!-- Body block -->
     
         <main>

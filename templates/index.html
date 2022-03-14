@@ -33,20 +33,20 @@
                 {{ entry.points }}
             </td>
             <td>
-                {{ entry.createdBy }}
+                {{ entry.created_by }}
             </td>
             <td>
-                {{ entry.createdOn }}
+                {{ entry.created_on }}
             </td>
             <!-- entry.numberOfLikes.all|length used to display the number of comment,likes and dislikes -->
             <td>
-                {{ entry.Comments.all|length }}
+                {{ entry.list_comments.all|length }}
             </td>
             <td>
-                {{ entry.Likes.all|length }}
+                {{ entry.likes.all|length }}
             </td>
             <td>
-                {{ entry.Dislikes.all|length }}
+                {{ entry.dislikes.all|length }}
             </td>
         </tr>
     {% endfor %}
