@@ -12,19 +12,18 @@ from django.utils.decorators import method_decorator
 
 from .models import FACTIONS
 
+
 # Create your views here.
 class ListRosters(generic.ListView):
     """
     View to post roster the index page
     """
     model = RosterList
-    queryset = RosterList.objects.filter(status=1).order_by('-created_on')
+    queryset = RosterList.objects.filter(status=1)
     template_name = 'index.html'
     paginate_by = 10
     context_object_name = 'rosters'
-    extra_context = {'factions': FACTIONS }
-
-
+    extra_context = {'factions': FACTIONS}
 
 
 @csrf_protect
@@ -32,36 +31,38 @@ class ListRosters(generic.ListView):
 def post_roster(request):
 
     """
-    View to allow user to post a new roster 
+    View to allow user to post a new roster
 
     """
 
     # create an empty form  to post into the table
     form = RosterForm()
-    
+
     if request.method == 'POST':
         # handle the post and save the form data
         form = RosterForm(request.POST)
-        #if the form is valid
+        # if the form is valid
         if form.is_valid():
 
             new_form = form.save(commit=False)
-            #check if user is authenticated if so use their username if not use guest as created_by 
+            # check if user is authenticated if so use their
+            # username if not use guest as created_by
             if request.user.is_authenticated:
                 new_form.created_by = request.user
             else:
                 new_form.created_by = "guest"
-            
+
             new_form.status = 1
             new_form.save()
-        
 
         return redirect(reverse('home'))
-        
+
     else:
         form = RosterForm()
 
-    return render(request, 'postRoster.html', {'roster_form': form, 'comment_form': CommentForm()})
+    return render(request, 'postRoster.html', {
+        'roster_form': form, 'comment_form': CommentForm()
+        })
 
 
 class RosterDetail(View):
@@ -74,7 +75,6 @@ class RosterDetail(View):
         """
         queryset = RosterList.objects.filter(status=1)
         post = get_object_or_404(queryset, pk=id)
-        user = User.objects.get(username=request.user.username)
         comments = Comment.objects.filter(post=post)
         liked = False
         disliked = False
@@ -84,8 +84,7 @@ class RosterDetail(View):
         elif post.dislikes.filter(id=self.request.user.id).exists():
             liked = False
             disliked = True
-            
-        
+
         return render(
             request,
             "RosterDetail.html",
@@ -97,7 +96,6 @@ class RosterDetail(View):
                 "liked": liked,
                 "disliked": disliked,
                 "comment_form": CommentForm(),
-                'user': user,
             },
         )
 
@@ -129,7 +127,9 @@ class RosterDetail(View):
             'post': post,
             'comments': comments,
         }
-        # use the post variable which gets the object needed to be acounted by its id and create a variable set it to count and call the method created to count the likes in the model
+        # use the post variable which gets the object needed to
+        # be acounted by it's id and create a variable set it to
+        # count and call the method created to count the likes in the model
         number_of_likes = post.number_of_likes()
         number_of_dislikes = post.number_of_dislikes()
         number_of_comments = post.number_of_comments()
@@ -139,11 +139,9 @@ class RosterDetail(View):
         context['number_of_comments'] = number_of_comments
         context['roster_form'] = RosterForm()
 
-        # return redirect(reverse('home'))
         return render(request, 'RosterDetail.html', context)
 
 
-    
 class PostLike(View):
     '''
     view for the likes on a list
@@ -172,4 +170,3 @@ class PostDislike(View):
             post.dislikes.add(request.user)
             post.likes.remove(request.user)
         return HttpResponseRedirect(reverse('roster-detail', args=[id]))
- 

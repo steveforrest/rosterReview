@@ -103,12 +103,19 @@ The program can be deployed automatically but i have chosen to keep it as a manu
 
 ## Testing
 
+### Validation Testing
+
 * [CSS testing](https://jigsaw.w3.org/css-validator/validator)
+* [PEP8 testing](http://pep8online.com/)
+1. Models.py tested and completed
+2. Views.py tested and completed
+3. Test.py tested and completed
+4. Urls.py tested and completed
+
+### Manual Testing
+
+### Automated test
 
 ## Bugs
-
-### Dev Bug
-
-* Incorrect casing used when making models, have decided to ignore these as these have been passed through to the Data Base
 
 ## Citations
