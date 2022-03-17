@@ -114,6 +114,20 @@ The program can be deployed automatically but i have chosen to keep it as a manu
 
 ### Manual Testing
 
+The site has been tested by:- 
+* Upon accessing the home page, you are not logged in
+* Proceed to any of the links
+* Ensure that no comments can be entered and that the post cannot be liked or disliked
+* Click home to return to the index page
+* Click register and create an account
+* Ensure upon creating the account you are now back on the index page
+* Click create roster
+* Fill in all the fields and click submit
+* Returned to the index page note the new post entered now appears 
+* Click into the the post
+* Click on the like dislike buttons to check on their functionality
+* Add a comment and click submit
+
 ### Automated test
 
 ## Bugs
