@@ -27,12 +27,12 @@ I have chose to use similar Ui to other sites serving to the same community, for
 3. [Battleground Gaming](https://battlegroundgaming.co.uk/)
 4. [Warhammer Community](https://www.warhammer-community.com/)
 ***
-![Index page Am i Responsive](../rosterReview/static/images/responsive_index.png)
+![Index page Am i Responsive](static/images/responsive_index.png)
 ***
-![Create page Am i Responsive](../rosterReview/static/images/responsive_create.png)
+![Create page Am i Responsive](static/images/responsive_create.png)
 
 ***
-![Detail page Am i Responsive](../rosterReview/static/images/responsive_detail.png)
+![Detail page Am i Responsive](static/images/responsive_detail.png)
 ***
 
 ## Future builds
@@ -105,20 +105,20 @@ The program can be deployed automatically but i have chosen to keep it as a manu
 ### Validation Testing
 
 * [HTML testing](https://validator.w3.org/)
-1. ![Index page validation](../rosterReview/static/images/index_html.png) Index page validation, all tests passed.
+1. ![Index page validation](static/images/index_html.png) Index page validation, all tests passed.
 ***
-2. ![Roster Detail page validation](../rosterReview/static/images/rosterDetail_validation.png) RosterDetail Validation completed, although there were errors these could not be helped due to being generated from summernote.
+2. ![Roster Detail page validation](static/images/rosterDetail_validation.png) RosterDetail Validation completed, although there were errors these could not be helped due to being generated from summernote.
 ***
-3. ![Create Roster page validation](../rosterReview/static/images/createRoster_validation.png) CreateRoster Validation completed, although there were errors these could not be helped due to being generated from summernote.
+3. ![Create Roster page validation](static/images/createRoster_validation.png) CreateRoster Validation completed, although there were errors these could not be helped due to being generated from summernote.
 ***
-4. ![Register page validation](../rosterReview/static/images/signUp_validation.png) Register Validation completed, all tests passed.
+4. ![Register page validation](static/images/signUp_validation.png) Register Validation completed, all tests passed.
 ***
-5. ![Sign In page validation](../rosterReview/static/images/signIn_validation.png) SignIn Validation completed, all tests passed.
+5. ![Sign In page validation](static/images/signIn_validation.png) SignIn Validation completed, all tests passed.
 ***
-6. ![Sign out page validation](../rosterReview/static/images/signOutValidation.png) Sign Out Validation completed, all tests passed.
+6. ![Sign out page validation](static/images/signOutValidation.png) Sign Out Validation completed, all tests passed.
 ***
 * [CSS testing](https://jigsaw.w3.org/css-validator/validator)
-1. ![CSS Validation](../rosterReview/static/images/Css_validator.png)
+1. ![CSS Validation](static/images/Css_validator.png)
 ***
 * [PEP8 testing](http://pep8online.com/) Any Django code not written by me has not been held to the PEP8 standards but all of my code has been.
 1. Models.py tested and completed
@@ -156,7 +156,7 @@ The program can be deployed automatically but i have chosen to keep it as a manu
 
 #### Automated have been written to check the following
 * Ensure the default development parameter is uncommented
-![env setting needed to run automated test](../rosterReview/static/images/env.png)
+![env setting needed to run automated test](static/images/env.png)
 * Type into terminal "python3 manage.py test"
 * Watch tests complete
 
