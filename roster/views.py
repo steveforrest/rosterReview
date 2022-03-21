@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseRedirect
 
 
 from .models import FACTIONS
@@ -139,7 +140,7 @@ class RosterDetail(View):
         context['number_of_comments'] = number_of_comments
         context['roster_form'] = RosterForm()
 
-        return render(request, 'RosterDetail.html', context)
+        return HttpResponseRedirect(reverse('roster-detail', args=[id]))
 
 
 class PostLike(View):

@@ -11,7 +11,6 @@
     <meta name="keywords" content="WarHammer, Rosters, Lists">
     <meta name="author" content="Steve Forrest">
     <script src="https://kit.fontawesome.com/6ac3c717c4.js" crossorigin="anonymous"></script>
-    <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body {% if request.path == '/' %} id="index-background" class="background" {% elif request.path == '/post-roster/'%} id="roster-build-background" class="background" {% elif request.path == '/accounts/' %} class="background" id="account-background"{% endif %}>

@@ -1,22 +1,28 @@
-{% extends "base.html" %}
-
-{% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load i18n %} {% block head_title %}{% trans
+"Signup" %}{% endblock %} {% block content %}
 <section id="account-background">
-<h2 class="account-styling">{% trans "Sign Up" %}</h1>
+  <h2 class="account-styling">{% trans "Sign Up" %}</h2>
 
-<p>{% blocktrans %}<a class="link-style" href="{{ login_url }}">Already have an account? Then please sign in</a>.{% endblocktrans %}</p>
+  <p>
+    {% blocktrans %}<a class="link-style" href="{{ login_url }}"
+      >Already have an account? Then please sign in</a
+    >.{% endblocktrans %}
+  </p>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button class="button" type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+  <form
+    class="signup"
+    id="signup_form"
+    method="post"
+    action="{% url 'account_signup' %}"
+  >
+    {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+    <input
+      type="hidden"
+      name="{{ redirect_field_name }}"
+      value="{{ redirect_field_value }}"
+    />
+    {% endif %}
+    <button class="button" type="submit">{% trans "Sign Up" %} &raquo;</button>
+  </form>
 </section>
 {% endblock %}

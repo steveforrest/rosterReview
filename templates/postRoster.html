@@ -1,16 +1,9 @@
-{% extends 'base.html' %} {% block content %}
-{% load crispy_forms_tags %}
-<section class='roster-create'>
- <form class="form-flex" action="{% url 'post-roster' %}" method="POST">
-      {% csrf_token %} 
-      {{roster_form | safe}}
-
-      <a
-        href="{% url 'home' %} "
-        class="font-color-black text-upper-case no-text-decoration active"
-        aria-label="Home page nav link"
-        ><input class="button" type="submit" value="Submit"></a>
-        
+{% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
+<section class="roster-create">
+  <form class="form-flex" action="{% url 'post-roster' %}" method="POST">
+    {% csrf_token %} {{roster_form | safe}}
+    <input type="submit" class="button" value="Create Roster"></button>
   </form>
-</section>
+  </section>
+
 {% endblock content %}
