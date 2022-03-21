@@ -157,6 +157,7 @@ The program can be deployed automatically but i have chosen to keep it as a manu
 #### Automated have been written to check the following
 * Ensure the default development parameter is uncommented
 ![env setting needed to run automated test](static/images/env.png)
+1. secret key shown above is nopt the true secret key
 * Type into terminal "python3 manage.py test"
 * Watch tests complete
 
