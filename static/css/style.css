@@ -29,6 +29,14 @@ body {
     text-decoration: none;
 }
 
+.no-text-decoration-list {
+    text-decoration: none;
+}
+
+.no-text-decoration-list:hover {
+    text-decoration: underline;
+}
+
 .text-upper-case {
     text-transform: uppercase;
 }
@@ -61,7 +69,6 @@ main {
 .flex-nav>li {
     padding: 0.25rem 0;
 }
-
 
 .text-center {
     text-align: center;
@@ -232,6 +239,10 @@ i::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    /* <------ */
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 #id_roster_iframe {

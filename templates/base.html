@@ -22,25 +22,25 @@
             <nav class="flex-nav">
                 <ul class="list-styling">
                     <li>
-                        <a href="{% url 'home' %} " class="font-color-orange text-upper-case no-text-decoration active"
+                        <a href="{% url 'home' %} " class="font-color-orange text-upper-case no-text-decoration-list active"
                             aria-label="Home page nav link">Home</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url 'account_logout' %}" class="font-color-orange text-upper-case no-text-decoration"
+                        <a href="{% url 'account_logout' %}" class="font-color-orange text-upper-case no-text-decoration-list"
                             aria-label="">Logout</a>
                     </li>
                     <li>
-                        <a href="{% url 'post-roster' %}" class="font-color-orange text-upper-case no-text-decoration"
+                        <a href="{% url 'post-roster' %}" class="font-color-orange text-upper-case no-text-decoration-list"
                             aria-label="">Create Roster</a>
                     </li>
                     {% else %}
                     <li>
-                        <a href="{% url 'account_signup' %}" class="font-color-orange text-upper-case no-text-decoration"
+                        <a href="{% url 'account_signup' %}" class="font-color-orange text-upper-case no-text-decoration-list"
                             aria-label="">Register</a>
                     </li>
                     <li>
-                        <a href="{% url 'account_login' %}" class="font-color-orange text-upper-case no-text-decoration"
+                        <a href="{% url 'account_login' %}" class="font-color-orange text-upper-case no-text-decoration-list"
                             aria-label="">Login</a>
                     </li>
                     {% endif %}
@@ -78,12 +78,12 @@
                         here:
                         <a href="http://instagram.com" rel="noopener" target="_blank"
                             aria-label="Visit our instagram page (opens in new tab)">
-                            <i class="fab fa-instagram font-color-orange"></i>
+                            <i class="fab fa-instagram font-color-orange no-text-decoration-list"></i>
                         </a>
                     </li>
                     <li class="font-color-orange text-center">Contact us by Email:
                         <a href="mailto:steveforrrest_1@hotmail.com" aria-label="Email us here: "><i
-                                class="fas fa-at font-color-orange"></i>
+                                class="fas fa-at font-color-orange no-text-decoration-list"></i>
                         </a>
                     </li>
                 </ul>
@@ -96,14 +96,14 @@
                     <li class="font-color-orange text-center list-style">Buy new supplies from Games Workshop:
                         <a href="https://www.games-workshop.com/en-GB/Home" rel="noopener" target="_blank"
                             aria-label="Visit Games workshop webstore to buy new supplies (opens in new tab)">
-                            <i class="fas fa-radiation-alt font-color-orange"></i>
+                            <i class="fas fa-radiation-alt font-color-orange no-text-decoration-list"></i>
                         </a>
                     </li>
                     <li class="font-color-orange text-center list-style">Check out Warhammer community to find
                         out more about the hobby:
                         <a href="https://www.warhammer-community.com/" rel="noopener" target="_blank"
                             aria-label="Visit the main warhammer community page (opens in new tab)">
-                            <i class="fab fa-galactic-senate font-color-orange"></i>
+                            <i class="fab fa-galactic-senate font-color-orange no-text-decoration-list"></i>
                         </a>
                     </li>
                 </ul>
