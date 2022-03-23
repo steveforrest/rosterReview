@@ -133,6 +133,19 @@ label {
         2px 2px 0 #000;
 }
 
+/* Roster build title */
+
+.roster-build-title {
+    color: white;
+    text-transform: capitalize;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+.title-flex {
+    display: flex;
+    justify-content: center
+}
+
 /* Table style */
 
 .table-flex {
@@ -176,11 +189,11 @@ ul {
 }
 
 .roster-styling {
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 .roster-create {
-    padding: 5rem 3rem;
+    padding: 1rem 3rem;
 }
 
 .roster-detail {
@@ -240,7 +253,6 @@ i::before {
     justify-content: center;
     align-items: center;
     background-size: cover;
-    /* <------ */
     background-repeat: no-repeat;
     background-position: center center;
 }

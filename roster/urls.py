@@ -12,4 +12,6 @@ urlpatterns = [
          name='like_post'),
     path('dislike/<int:id>/', views.PostDislike.as_view(),
          name='dislike_post'),
+    path('update-roster/<updated_id>/', views.update_roster,
+         name='update-roster'),
 ]

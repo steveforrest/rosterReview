@@ -9,8 +9,6 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
-
-
 from .models import FACTIONS
 
 
@@ -65,6 +63,23 @@ def post_roster(request):
         'roster_form': form, 'comment_form': CommentForm()
         })
 
+@login_required
+def update_roster(request, updated_id):
+    # update = RosterList.objects.get(id=updated_id)
+    roster = get_object_or_404(RosterList, id=updated_id)
+    if request.method == 'POST':
+        form = RosterForm(request.POST, instance=roster)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('roster-detail', args=[roster.id]))
+    form = RosterForm(instance=roster)
+    context = {
+        'roster': roster, 'form': form,
+    }
+    return render(request, 'update_roster.html', context)
+    # user = User.objects.get(username=request.user.username)
+    # # if request.user == update.user:
+   
 
 class RosterDetail(View):
     """
@@ -100,6 +115,7 @@ class RosterDetail(View):
             },
         )
 
+
     @method_decorator(login_required)
     def post(self, request, id, *args, **kwargs):
         """
@@ -119,7 +135,6 @@ class RosterDetail(View):
             post.list_comments.add(user)
             # save the RosterList
             post.save()
-            print(form)
         context = {
             'LikesForm': form,
             'DisikesForm': form,

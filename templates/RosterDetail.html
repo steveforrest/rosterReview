@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 <section class="roster-detail">
     <div>
-    <p class="roster-styling"> <strong> Roster Name :</strong> {{  post.name }}</p>
+    <p class="roster-styling"> <strong> Roster Name:</strong> {{  post.name }}</p>
     <br>
     <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.created_on}} </p>
     <p> <strong> Points: </strong>{{  post.points }} </p>
@@ -41,7 +41,7 @@
             <button type='submit' class="transparent-button" name='opinion'><i class="fa-regular fa-thumbs-down transparent-button"></i></button> 
             {% endif %}
         {% else %}
-            <span><i class="far fa-thumbs-up f-a-size"></i></span>
+            <span><i class="far fa-thumbs-down f-a-size"></i></span>
         {%endif %}
             <span> {{number_of_dislikes}} </span>
         </form>
@@ -50,7 +50,7 @@
 {% if user.is_authenticated %}
  <form action="{% url 'roster-detail' id=post.id %}" method='post'>
     {% csrf_token %}
-    <p>{{user.username}} comments:</p>
+    <p>{{user.username}} Comments:</p>
      {{comment_form | crispy}}
      {% csrf_token %}
      <button class="button">Submit</button>
