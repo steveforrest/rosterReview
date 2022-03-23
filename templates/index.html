@@ -1,6 +1,5 @@
 {% extends 'base.html' %} {% block content %}
 <table class="table-flex">
-  {% comment %} Table headings {% endcomment %}
   <tr>
     <th>Roster Name</th>
     <th>Faction</th>
@@ -28,11 +27,6 @@
     <td>{{ entry.list_comments.all|length }}</td>
     <td>{{ entry.likes.all|length }}</td>
     <td>{{ entry.dislikes.all|length }}</td>
-    <td>
-      {% if user.is_authenticated%}
-      <a href="{% url 'update-roster' entry.id %}"> update</a>
-      {% endif %}
-    </td>
   </tr>
   {% endfor %}
 </table>

@@ -14,4 +14,6 @@ urlpatterns = [
          name='dislike_post'),
     path('update-roster/<updated_id>/', views.update_roster,
          name='update-roster'),
+    path('delete-roster/<updated_id>/', views.delete_roster,
+         name='delete-roster'),
 ]

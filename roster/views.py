@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 from .models import FACTIONS
+from django.contrib import messages
 
 
 # Create your views here.
@@ -67,6 +68,10 @@ def post_roster(request):
 def update_roster(request, updated_id):
     # update = RosterList.objects.get(id=updated_id)
     roster = get_object_or_404(RosterList, id=updated_id)
+    logged_in_user = request.user.id
+    author = roster.created_by.id
+    # if logged_in_user is not author:
+    #     messages.WARNING(request, f'You do not have permission to update this roster')
     if request.method == 'POST':
         form = RosterForm(request.POST, instance=roster)
         if form.is_valid():
@@ -77,9 +82,14 @@ def update_roster(request, updated_id):
         'roster': roster, 'form': form,
     }
     return render(request, 'update_roster.html', context)
-    # user = User.objects.get(username=request.user.username)
-    # # if request.user == update.user:
+
    
+@login_required
+def delete_roster(request, updated_id):
+    roster = get_object_or_404(RosterList, id=updated_id)
+    roster.delete()
+    return redirect(reverse('home'))
+
 
 class RosterDetail(View):
     """
