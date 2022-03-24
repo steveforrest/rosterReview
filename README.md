@@ -105,26 +105,39 @@ The program can be deployed automatically but i have chosen to keep it as a manu
 ### Validation Testing
 
 * [HTML testing](https://validator.w3.org/)
-1. ![Index page validation](static/images/index_html.png) Index page validation, all tests passed.
+1. ![Index page validation](static/images/index_html.png)
+* Index page validation, all tests passed.
 ***
-2. ![Roster Detail page validation](static/images/rosterDetail_validation.png) RosterDetail Validation completed, although there were errors these could not be helped due to being generated from summernote.
+2. ![Roster Detail page validation](static/images/rosterDetail_validation.png)
+* RosterDetail Validation completed, although there were errors these could not be helped due to being generated from summernote.
 ***
-3. ![Create Roster page validation](static/images/createRoster_validation.png) CreateRoster Validation completed, although there were errors these could not be helped due to being generated from summernote.
+3. ![Create Roster page validation](static/images/createRoster_validation.png)
+* CreateRoster Validation completed, although there were errors these could not be helped due to being generated from summernote and generic django code.
 ***
 4. ![Register page validation](static/images/signUp_validation.png) Register Validation completed, all tests passed.
 ***
-5. ![Sign In page validation](static/images/signIn_validation.png) SignIn Validation completed, all tests passed.
+5. ![Sign In page validation](static/images/signIn_validation.png)
+* SignIn Validation completed, all tests passed.
 ***
-6. ![Sign out page validation](static/images/signOutValidation.png) Sign Out Validation completed, all tests passed.
+6. ![Sign out page validation](static/images/signOutValidation.png) 
+* Sign Out Validation completed, all tests passed.
+***
+7. ![Update template](static/images/UpdateHtmlValidator.png)
+* CreateRoster Validation completed, although there were errors these could not be helped due to being generated from summernote and generic django code.
 ***
 * [CSS testing](https://jigsaw.w3.org/css-validator/validator)
+***
 1. ![CSS Validation](static/images/Css_validator.png)
 ***
 * [PEP8 testing](http://pep8online.com/) Any Django code not written by me has not been held to the PEP8 standards but all of my code has been.
 1. Models.py tested and completed
+* ![Models.py validated in pep8](static/images/ModelsPep8Validation.png)
 2. Views.py tested and completed
+* ![Views.py validated](static/images/ViewsPep8Validation.png)
 3. Test.py tested and completed
+* ![Test valifdation](static/images/TestValidation.png)
 4. Urls.py tested and completed
+* ![Urls.py validated](static/images/URLsPep8Validation.png)
 
 ### Manual Testing
 

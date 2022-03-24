@@ -5,8 +5,8 @@
     {% for message in messages %} {% endfor %}
     <div>
     <p class="roster-styling"> <strong> Roster Name:</strong> {{  post.name }}</p>
-    <p> <a href="{% url 'update-roster' post.id %}"> Update</a> </p>
-    <p> <a href="{% url 'delete-roster' post.id %}"> Dlete Roster</a> </p>
+    <p> <a class="no-text-decoration-list no-text-decoration-list:hover font-color-black" href="{% url 'update-roster' post.id %}"> Update</a> </p>
+    <p> <a class="no-text-decoration-list no-text-decoration-list:hover font-color-black" href="{% url 'delete-roster' post.id %}"> Dlete Roster</a> </p>
     <br>
     <p> <strong> List Author: </strong>{{ post.createdBy }} on {{ post.created_on}} </p>
     <p> <strong> Points: </strong>{{  post.points }} </p>

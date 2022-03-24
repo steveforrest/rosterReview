@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
 <div class="title-flex">
-<h1 class="roster-build-title"> Update your Roster </h1>
+  <h1 class="roster-build-title">Update your Roster</h1>
 </div>
 <section class="roster-create">
   <form class="form-flex" method="POST">
     {% csrf_token %} {{ form | safe }}
-    <input type="submit" class="button" value="Update Roster"></button>
+    <input type="submit" class="button" value="Update Roster" />
   </form>
-  </section>
+</section>
 
 {% endblock content %}

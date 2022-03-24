@@ -64,14 +64,21 @@ def post_roster(request):
         'roster_form': form, 'comment_form': CommentForm()
         })
 
+
 @login_required
 def update_roster(request, updated_id):
-    # update = RosterList.objects.get(id=updated_id)
+    """
+    Updates the roster allowing original user to access the data already in
+    the database and amend it
+    """
     roster = get_object_or_404(RosterList, id=updated_id)
     logged_in_user = request.user.id
     author = roster.created_by.id
     if logged_in_user is not author:
-        messages.WARNING(request, f'You do not have permission to update this roster')
+        messages.add_message(request, messages.WARNING,
+                             'You do not have'
+                             'permission to update this roster!')
+        return redirect(reverse('roster-detail', args=[roster.id]))
     if request.method == 'POST':
         form = RosterForm(request.POST, instance=roster)
         if form.is_valid():
@@ -83,10 +90,20 @@ def update_roster(request, updated_id):
     }
     return render(request, 'update_roster.html', context)
 
-   
+
 @login_required
 def delete_roster(request, updated_id):
+    """
+    Allows original user to delete the roster
+    """
     roster = get_object_or_404(RosterList, id=updated_id)
+    logged_in_user = request.user.id
+    author = roster.created_by.id
+    if logged_in_user is not author:
+        messages.add_message(request, messages.WARNING,
+                             'You do not have permission'
+                             'to update this roster!')
+        return redirect(reverse('home'))
     roster.delete()
     return redirect(reverse('home'))
 
@@ -124,7 +141,6 @@ class RosterDetail(View):
                 "comment_form": CommentForm(),
             },
         )
-
 
     @method_decorator(login_required)
     def post(self, request, id, *args, **kwargs):
