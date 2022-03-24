@@ -70,8 +70,8 @@ def update_roster(request, updated_id):
     roster = get_object_or_404(RosterList, id=updated_id)
     logged_in_user = request.user.id
     author = roster.created_by.id
-    # if logged_in_user is not author:
-    #     messages.WARNING(request, f'You do not have permission to update this roster')
+    if logged_in_user is not author:
+        messages.WARNING(request, f'You do not have permission to update this roster')
     if request.method == 'POST':
         form = RosterForm(request.POST, instance=roster)
         if form.is_valid():
