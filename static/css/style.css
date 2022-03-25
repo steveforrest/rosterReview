@@ -157,7 +157,7 @@ label {
 
 table {
     margin: 2rem 0;
-    /* border-collapse: collapse; */
+    border-collapse: collapse;
     max-width: 100vw;
 }
 
@@ -236,7 +236,7 @@ i::before {
 
 #index-background {
     /* Url of image */
-    background-image: url('https://res.cloudinary.com/dxav2jkm3/image/upload/v1646779041/static/images/index.jpg');
+    background-image: url('https://res.cloudinary.com/dxav2jkm3/image/upload/v1648226966/media/index.jpg');
 }
 
 #roster-build-background {
