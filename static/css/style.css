@@ -117,7 +117,8 @@ main {
 /* like dislike flex */
 
 .like-dislike-flex {
-    display: flex
+    display: flex;
+    flex-direction: column;
 }
 
 /* form */
@@ -196,8 +197,9 @@ ul {
 
 .roster-detail {
     background-color: rgba(255, 255, 250, 0.8);
-    padding: 1rem 3rem;
-
+    padding: 1rem 3rem 30rem 3rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .flex-footer {
@@ -253,6 +255,10 @@ i::before {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+#id_comment {
+    max-width: 75vw;
 }
 
 #id_roster_iframe {
@@ -320,7 +326,7 @@ input {
 
     td,
     th {
-        font-size: 0.25rem;
+        font-size: 0.5rem;
     }
 
 }

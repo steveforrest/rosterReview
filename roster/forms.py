@@ -23,6 +23,6 @@ class CommentForm(ModelForm):
         model = Comment
         fields = ('comment',)
         widgets = {
-            'comment': SummernoteWidget(),
+            # 'comment': SummernoteWidget(),
         }
 

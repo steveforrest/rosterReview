@@ -20,7 +20,8 @@
     <p><strong> Roster: </strong> {{ post.roster | safe }}</p>
 </div>
 <div class="like-dislike-flex">
-    <p><strong>Like this post:  </strong></p>
+    <div>
+        <p><strong>Like this post:  </strong></p>
         {% if user.is_authenticated %}
         <form action="{% url 'like_post' post.id %}" method='POST'>
             {% csrf_token %}
@@ -34,6 +35,8 @@
         {%endif %}
         <p> {{number_of_likes}} </p>
         </form>
+    </div>
+    <div>
     <p><strong>Think the post needs improvement let them know:  </strong></p>
         {% if user.is_authenticated %}
         <form action="{% url 'dislike_post' post.id %} " method='POST'>
@@ -48,6 +51,7 @@
         {%endif %}
             <span> {{number_of_dislikes}} </span>
         </form>
+    </div>
 </div>
 
 {% if user.is_authenticated %}
